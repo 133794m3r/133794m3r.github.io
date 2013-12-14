@@ -15,6 +15,10 @@ body {
 The following documents the gzip level 6 versus lz4 in high compression mode. With the smallest block size, this was chosen to reduce total peak memory usage. lz4 used at peak ~1MB whereas gzip used 3MB. Also the current micro-sd card drive is crap, so when you are reading or writing at greater than 1.4MB/s then it sits there and eats up all of the CPUtime thus making lz4 perform _way_ worse than it should. As it does more I/O than gzip. gzip is also obviously affected by this but it's not as fast as lz4 in high compression mode and this can be seen in the test wherein I did it via a tmpfs mounted directory. Basically it means everything was run from RAM entirely. To keep everything nice and clean I forced the caches to be dropped to avoid one or the other compressor from gaining any additional edge. So there is no kernel disk cache being used for the entirety of these tests. I used <a href="http://www.data-compression.info/Corpora/CalgaryCorpus/CalgaryCorpus">The Large Calgary Corpus </a> and also the <a href="http://sun.aei.polsl.pl/~sdeor/index.php?page=silesia">Silesia compression corpus</a>.
 </p>
 <p> To summarize all of results here. The compression time for lz4 is always faster than gzip. It's anywhere from 2 to 6 times as fast. In decompression it is almost always faster than gzip but sometimes gzip eeks out a victory. As stated elsewhere I'll redo this test once the uSD card driver is improved. As rigth now it is _greatly_ hurting lz4 especially when it comes to compression and decompression as it's dealing with more data than gzip.
+</p>
+<br />
+<h2>All compression times are from the "real" time from unix's "time" command.</h2>
+<br />
 <ol id='toc'>
 	<li>
 		<a href='#comp-ratio'>Compression ratio comparison</a>
