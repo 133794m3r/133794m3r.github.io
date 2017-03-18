@@ -1,0 +1,816 @@
+<html>
+<head>
+<style type='text/css'>
+body {
+	overflow:auto;
+	width:95%;
+}
+</style>
+</head>
+<body>
+<div>
+<p>
+The following documents the gzip level 6 versus lz4 in high compression mode. With the smallest block size, this was chosen to reduce total peak memory usage. lz4 used at peak ~1MB whereas gzip used 3MB. Also the current micro-sd card drive is crap, so when you are reading or writing at greater than 1.4MB/s then it sits there and eats up all of the CPUtime thus making lz4 perform _way_ worse than it should. As it does more I/O than gzip. gzip is also obviously affected by this but it's not as fast as lz4 in high compression mode and this can be seen in the test wherein I did it via a tmpfs mounted directory. Basically it means everything was run from RAM entirely. To keep everything nice and clean I forced the caches to be dropped to avoid one or the other compressor from gaining any additional edge. So there is no kernel disk cache being used for the entirety of these tests. I used <a href="http://www.data-compression.info/Corpora/CalgaryCorpus/CalgaryCorpus">The Large Calgary Corpus </a> and also the <a href="http://sun.aei.polsl.pl/~sdeor/index.php?page=silesia">Silesia compression corpus</a>.
+</p>
+<p> To summarize all of results here. The compression time for lz4 is always faster than gzip. It's anywhere from 2 to 6 times as fast. In decompression it is almost always faster than gzip but sometimes gzip eeks out a victory. As stated elsewhere I'll redo this test once the uSD card driver is improved. As rigth now it is _greatly_ hurting lz4 especially when it comes to compression and decompression as it's dealing with more data than gzip.
+<ol>
+	<li>
+		<a href='#comp-ratio'>Compression ratio comparison</a>
+
+	</li>
+	<li>
+		<a href='#silesia-comp-16gb'>Internal SD card class 10 Calgary compression test.</a>
+	</li>
+	<li>
+		<a href='#silesia-uncomp-16gb'>Internal SD card class 10 Calgary decompression test.</a>
+	</li>
+
+	<li>
+		<a href='#calgary-comp-16gb'>Internal SD card class 10 Calgary compression test.</a>
+	</li>
+	<li>
+		<a href='#calgary-uncomp-16gb'>Internal SD card class 10 Calgary decompression test.</a>
+	</li>
+
+	<li>
+		<a href='#silesia-comp-4gb'>Internal SD card class 4  Calgary compression test.</a>
+	</li>
+	<li>
+		<a href='#silesia-uncomp-4gb'>Internal SD card class 4 Calgary compression test.</a>
+	</li>
+	<li>
+		<a href='#calgary-comp-4gb'>Internal SD card class 4  Calgary compression test.</a>
+	</li>
+	<li>
+		<a href='#calgary-uncomp-4gb'>Internal SD card class 4 Calgary compression test.</a>
+	</li>
+
+	<li>
+		<a href='#silesia-comp-ram'> Ram based Calgary compression test.</a>
+	</li>
+	<li>
+		<a href='#silesia-uncomp-ram'> Ram based Calgary decompression test.</a>
+	</li>		
+</ol>
+</div>
+<div id='comp-ratio'>
+<p>The following is the size(in bytes), and compression ratio for the Silesia compression corpus. The first ratio value is uncompressed_size/compressed_size. The second is the more normal compressed_size/uncompressed size.
+</p>
+<pre>
+lz4  85647360  2.48 or 0.404
+gzip 67676160  3.14 or 0.32
+raw  212183040
+</pre>
+<p>The following is the size(in bytes), and compression ratio for the The large Calgary corpus. The first ratio value is uncompressed_size/compressed_size. The second is the more normal compressed_size/uncompressed size.
+</p>
+<pre>
+lz4  1402880 2.328 or 0.43
+gzip 1075200 3.04	 or 0.33
+raw  3266560
+</pre>
+<p>
+As you can see lz4hc is slightly worse at compression versus gzip level 6. This is _also_ with the smallest block size so thus the compression ratio is not as good as it could be. I also have disabled the new inter-block compression option which further improves compression.
+</p>
+</div>
+
+
+<div id='silesia-comp-16gb'>
+<h2>Silisea Compression on 16GB class 10 micro-sd card.</h2>
+<p>The following files are based upon the <a href="http://sun.aei.polsl.pl/~sdeor/index.php?page=silesia">Silesia compression corpus</a>. <br />
+They were done on a 16GB class 10 uSD card, inside of the GCW-zero. The uSD card driver eats up all cpu time after the I/O gets over a total of 1.4MB/s so these results are worse(for lz4) than they should be. Gzip might be affected too.<br />
+Both were compiled with their default flags and run on my zero over SSH.<br />
+<br />
+This is the compression times for the files.<br />
+</p>
+<pre>
+file_name: dickens
+lz4  6.68s
+gzip 18.87s
+
+file_name: mozilla
+lz4  26.47s
+gzip 3m 11.48s 
+
+file_name: mr
+lz4  7.65s
+gzip 25.67s 
+
+file_name: nci
+lz4  16.51s
+gzip 51.50s 
+
+file_name: ooffice
+lz4  2.60s
+gzip 12.73s
+
+file_name: osdb
+lz4  3.76s
+gzip 10.00s
+
+file_name: reymont
+lz4  5.56s
+gzip 21.81s
+
+file_name: samba
+lz4  8.30s
+gzip 22.14s 
+
+file_name: sao
+lz4  3.89s
+gzip 12.47s 
+
+file_name: webster
+lz4  20.97s
+gzip 57.39s 
+
+file_name: xml
+lz4  1.82s
+gzip 4.12s 
+
+file_name: x-ray
+lz4  3.52s
+gzip 7.14s
+</pre>
+<br />
+<br />
+</div>
+
+<div id='silesia-uncomp-16gb'>
+<h2>Silisea Decompression on 16GB class 10 micro-sd card.</h2>
+<p>The following files are based upon the <a href="http://sun.aei.polsl.pl/~sdeor/index.php?page=silesia">Silesia compression corpus</a>. <br />
+They were done on a 16GB class 10 uSD card, inside of the GCW-zero. The uSD card driver eats up all cpu time after the I/O gets over a total of 1.4MB/s so these results are worse(for lz4) than they should be. Gzip might be affected too.<br />
+Both were compiled with their default flags and run on my zero over SSH.<br />
+<br />
+This is the decompression times for the files.<br />
+</p>
+<pre>
+file_name: dickens
+lz4  0.69s
+gzip 1.28s
+
+file_name: mozilla
+lz4  9.40s
+gzip 11.21s 
+
+file_name: mr
+lz4  0.72s
+gzip 1.25s 
+
+file_name: nci
+lz4  1.51s
+gzip 2.25s 
+
+file_name: ooffice
+lz4  0.61s
+gzip 0.93s 
+
+file_name: osdb
+lz4  0.76s
+gzip 1.18s
+
+file_name: reymont
+lz4  0.43s
+gzip 0.68s 
+
+file_name: samba
+lz4  1.07s
+gzip 1.86s
+
+file_name: sao
+lz4  0.86s
+gzip 1.28s 
+
+file_name: webster
+lz4  4.86s
+gzip 7.67s 
+
+file_name: xml
+lz4  0.24s
+gzip 0.36s
+
+file_name: x-ray
+lz4  1.12s
+gzip 1.66s 
+</pre>
+<br />
+<br />
+</div>
+
+<div id='calgary-comp-16gb'>
+<h2>Calgary Compression on 16GB class 10 micro-sd card.</h2>
+<p>The following files are based upon the <a href="http://www.data-compression.info/Corpora/CalgaryCorpus/#CalgaryCorpus">The Large Calgary Corpus </a>. <br />
+They were done on a 16GB class 10 uSD card, inside of the GCW-zero. The uSD card driver eats up all cpu time after the I/O gets over a total of 1.4MB/s so these results are worse(for lz4) than they should be. Gzip might be affected too.<br />
+Both were compiled with their default flags and run on my zero over SSH.<br />
+<br />
+This is the compression times for the files.<br />
+</p>
+<pre>
+file_name: bib
+lz4  0.14s
+gzip 0.17s
+
+file_name: book1
+lz4  0.55s
+gzip 1.32s
+
+file_name: book2
+lz4  0.40s
+gzip 0.78s 
+
+file_name: geo
+lz4  0.12s
+gzip 0.94s 
+
+file_name: news
+lz4  0.23s
+gzip 0.41s 
+
+file_name: obj1
+lz4  0.08s
+gzip 0.07s 
+
+file_name: obj2
+lz4  0.16s
+gzip 0.55s 
+
+file_name: paper1
+lz4  0.10s
+gzip 0.09s 
+
+file_name: paper2
+lz4  0.12s
+gzip 0.15s 
+
+file_name: paper3
+lz4  0.10s
+gzip 0.09s
+
+file_name: paper4
+lz4  0.08s
+gzip 0.05s 
+
+file_name: paper5
+lz4  0.08s
+gzip 0.05s 
+
+file_name: paper6
+lz4  0.09s
+gzip 0.08s 
+
+file_name: pic
+lz4  0.31s
+gzip 1.56s 
+
+file_name: progc
+lz4  0.09s
+gzip 0.09s 
+
+file_name: progl
+lz4  0.12s
+gzip 0.14s 
+
+file_name: progp
+lz4  0.10s
+gzip 0.11s 
+
+file_name: trans
+lz4  0.12s
+gzip 0.12s 
+</pre>
+<br />
+<br />
+</div>
+
+<div id='calgary-uncomp-16gb'>
+<h2>Calgary Decompression on 16GB class 10 micro-sd card.</h2>
+<p>The following files are based upon the <a href="http://www.data-compression.info/Corpora/CalgaryCorpus/CalgaryCorpus">The Large Calgary Corpus </a>. <br />
+They were done on a 16GB class 10 uSD card, inside of the GCW-zero. The uSD card driver eats up all cpu time after the I/O gets over a total of 1.4MB/s so these results are worse(for lz4) than they should be. Gzip might be affected too.<br />
+Both were compiled with their default flags and run on my zero over SSH.<br />
+<br />
+This is the decompression times for the files.<br />
+</p>
+<pre>
+file_name: bib
+lz4  0.09s
+gzip 0.06s
+
+file_name: book1
+lz4  0.14s
+gzip 0.14s
+
+file_name: book2
+lz4  0.13s
+gzip 0.11s
+
+file_name: geo
+lz4  0.10s
+gzip 0.06s
+
+file_name: news
+lz4  0.12s
+gzip 0.09s
+
+file_name: obj1
+lz4  0.09s
+gzip 0.05s
+
+file_name: obj2
+lz4  0.10s
+gzip 0.07s 
+
+file_name: paper1
+lz4  0.09s
+gzip 0.05s
+
+file_name: paper2
+lz4  0.10s
+gzip 0.05s
+
+file_name: paper3
+lz4  0.09s
+gzip 0.05s 
+
+file_name: paper4
+lz4  0.09s
+gzip 0.04s 
+
+file_name: paper5
+lz4  0.09s
+gzip 0.04s
+
+file_name: paper6
+lz4  0.09s
+gzip 0.05s
+file_name: pic
+lz4  0.10s
+gzip 0.07s
+
+file_name: progc
+lz4  0.09s
+gzip 0.05s 
+
+file_name: progl
+lz4  0.09s
+gzip 0.05s
+
+file_name: progp
+lz4  0.09s
+gzip 0.05s
+
+file_name: trans
+lz4  0.09s
+gzip 0.05s 
+</pre>
+<br />
+<br />
+</div>
+
+<div id='silesia-comp-4gb'>
+<h2>Silisea Compression on 4GB class 4 micro-sd card.</h2>
+<p>The following files are based upon the <a href="http://sun.aei.polsl.pl/~sdeor/index.php?page=silesia">Silesia compression corpus</a>. <br />
+They were done on a 4GB class 4 uSD card, inside of the GCW-zero. The uSD card driver eats up all cpu time after the I/O gets over a total of 1.4MB/s so these results are worse(for lz4) than they should be. Gzip might be affected too.<br />
+Both were compiled with their default flags and run on my zero over SSH.<br />
+<br />
+This is the compression times for the files.<br />
+</p>
+<pre>
+file_name: dickens
+lz4  9.26s
+gzip 20.24s
+
+file_name: mozilla
+lz4  34.41s
+gzip 3m 2.49s
+
+file_name: mr
+lz4  10.21s
+gzip 28.85s
+
+file_name: nci
+lz4  19.81s
+gzip 50.28s
+
+file_name: ooffice
+lz4  4.20s
+gzip 15.69s
+
+file_name: osdb
+lz4  6.06s
+gzip 13.21s
+
+file_name: reymont
+lz4  6.87s
+gzip 23.60s
+
+file_name: samba
+lz4  11.74s
+gzip 25.32s
+
+file_name: sao
+lz4  6.87s
+gzip 12.98s
+
+file_name: webster
+lz4  27.80s
+gzip 57.50s
+
+file_name: xml
+lz4  2.23s
+gzip 4.85s
+
+file_name: x-ray
+lz4  7.29s
+gzip 10.38s
+</pre>
+</div>
+<br />
+<br />
+</div>
+
+<div id='silesia-uncomp-4gb'>
+<h2>Silisea Decompression on 4GB class 4 micro-sd card.</h2>
+<p>The following files are based upon the <a href="http://www.data-compression.info/Corpora/CalgaryCorpus/#CalgaryCorpus">The Large Calgary Corpus </a>. <br />
+They were done on a 4GB class 4 uSD card, inside of the GCW-zero. The uSD card driver eats up all cpu time after the I/O gets over a total of 1.4MB/s so these results are worse(for lz4) than they should be. Gzip might be affected too.<br />
+Both were compiled with their default flags and run on my zero over SSH.<br />
+<br />
+This is the compression times for the files.<br />
+</p>
+<pre>
+file_name: dickens
+lz4  5.89s
+gzip 7.80s
+
+file_name: mozilla
+lz4  34.63s
+gzip 39.42s
+
+file_name: mr
+lz4  5.56s
+gzip 7.71s
+
+file_name: nci
+lz4  20.63s
+gzip 22.07s
+
+file_name: ooffice
+lz4  3.58s
+gzip 4.27s
+
+file_name: osdb
+lz4  5.67s
+gzip 6.84s
+
+file_name: reymont
+lz4  3.85s
+gzip 4.13s
+
+file_name: samba
+lz4  11.64s
+gzip 13.36s
+
+file_name: sao
+lz4  4.36s
+gzip 5.50s
+
+file_name: webster
+lz4  27.67s
+gzip 31.27s
+
+file_name: xml
+lz4  2.97s
+gzip 3.47s
+
+file_name: x-ray
+lz4  5.17s
+gzip 6.61s
+</pre>
+<br />
+<br />
+</div>
+
+
+
+<div id='calgary-comp-4gb'>
+<h2>Calgary Compression on 4GB class 4 micro-sd card.</h2>
+<p>The following files are based upon the <a href="http://www.data-compression.info/Corpora/CalgaryCorpus/#CalgaryCorpus">The Large Calgary Corpus </a>. <br />
+They were done on a 4GB class 4 uSD card, inside of the GCW-zero. The uSD card driver eats up all cpu time after the I/O gets over a total of 1.4MB/s so these results are worse(for lz4) than they should be. Gzip might be affected too.<br />
+Both were compiled with their default flags and run on my zero over SSH.<br />
+<br />
+This is the compression times for the files.<br />
+</p>
+<pre>
+file_name: bib
+lz4  0.21s
+gzip 0.18s
+
+file_name: book1
+lz4  0.64s
+gzip 1.58s
+
+file_name: book2
+lz4  0.47s
+gzip 1.08s
+
+file_name: geo
+lz4  0.10s
+gzip 1.21s
+
+file_name: news
+lz4  0.30s
+gzip 0.63s
+
+file_name: obj1
+lz4  0.16s
+gzip 0.30s
+
+file_name: obj2
+lz4  0.24s
+gzip 0.81s
+
+file_name: paper1
+lz4  0.17s
+gzip 0.11s
+
+file_name: paper2
+lz4  0.20s
+gzip 0.39s
+
+file_name: paper3
+lz4  0.17s
+gzip 0.32s
+
+file_name: paper4
+lz4  0.15s
+gzip 0.07s
+
+file_name: paper5
+lz4  0.15s
+gzip 0.06s
+
+file_name: paper6
+lz4  0.16s
+gzip 0.31s
+
+file_name: pic
+lz4  0.39s
+gzip 1.61s
+
+file_name: progc
+lz4  0.16s
+gzip 0.31s
+
+file_name: progl
+lz4  0.19s
+gzip 0.15s
+
+file_name: progp
+lz4  0.08s
+gzip 0.12s
+
+file_name: trans
+lz4  0.19s
+gzip 0.36s
+</pre>
+<br />
+<br />
+</div>
+
+<div id='calgary-uncomp-4gb'>
+<h2>Calgary Decompression on 4GB class 4 micro-sd card.</h2>
+<p>The following files are based upon the <a href="http://www.data-compression.info/Corpora/CalgaryCorpus/CalgaryCorpus">The Large Calgary Corpus </a>. <br />
+They were done on a 4GB class 4 uSD card, inside of the GCW-zero. The uSD card driver eats up all cpu time after the I/O gets over a total of 1.4MB/s so these results are worse(for lz4) than they should be. Gzip might be affected too.<br />
+Both were compiled with their default flags and run on my zero over SSH.<br />
+<br />
+This is the decompression times for the files.<br />
+</p>
+<pre>
+file_name: bib
+lz4  0.14s
+gzip 0.07s
+
+file_name: book1
+lz4  0.49s
+gzip 0.83s
+
+file_name: book2
+lz4  0.19s
+gzip 0.83s
+
+file_name: geo
+lz4  0.15s
+gzip 0.17s
+
+file_name: news
+lz4  0.18s
+gzip 0.21s
+
+file_name: obj1
+lz4  0.04s
+gzip 0.14s
+
+file_name: obj2
+lz4  0.16s
+gzip 0.17s
+
+file_name: paper1
+lz4  0.14s
+gzip 0.15s
+
+file_name: paper2
+lz4  0.05s
+gzip 0.15s
+
+file_name: paper3
+lz4  0.14s
+gzip 0.15s
+
+file_name: paper4
+lz4  0.14s
+gzip 0.17s
+
+file_name: paper5
+lz4  0.14s
+gzip 0.14s
+
+file_name: paper6
+lz4  0.04s
+gzip 0.14s
+
+file_name: pic
+lz4  0.11s
+gzip 0.52s
+
+file_name: progc
+lz4  0.14s
+gzip 0.15s
+
+file_name: progl
+lz4  0.14s
+gzip 0.15s
+
+file_name: progp
+lz4  0.14s
+gzip 0.15s
+
+file_name: trans
+lz4  0.14s
+gzip 0.17s 
+</pre>
+<br />
+<br />
+</div>
+<div id='silesia-comp-ram'>
+<h2>Silesia Compression in ram.</h2>
+<p>The following files are based upon the <a href="http://sun.aei.polsl.pl/~sdeor/index.php?page=silesia">Silesia compression corpus</a> and <a href="http://www.data-compression.info/Corpora/CalgaryCorpus/CalgaryCorpus">The Large Calgary Corpus </a>. <br />
+They were done in ram on a tmpfs mounted directory.<br />
+Both were compiled with their default flags and run on my zero over SSH.<br />
+<br />
+This is the compression times for the files.<br />
+</p>
+<pre>
+file_name: dickens
+lz4  6.44s
+gzip 17.56s
+
+file_name: mozilla
+lz4  18.79s
+gzip 
+real 2m 56.95s
+
+file_name: mr
+lz4  7.30s
+gzip 25.56s 
+
+file_name: nci
+lz4  15.52s
+gzip 47.25s
+
+file_name: ooffice
+lz4  2.34s
+gzip 12.30s
+
+file_name: osdb
+lz4  3.41s
+gzip 9.56s 
+
+file_name: mr
+lz4  0.26s
+gzip 1.08s
+
+file_name: nci
+lz4  0.55s
+gzip 1.49s 
+
+file_name: ooffice
+lz4  0.18s
+gzip 0.79s
+
+file_name: osdb
+lz4  0.24s
+gzip 1.01s
+
+file_name: mr
+lz4  7.27s
+gzip 25.53s
+
+file_name: nci
+lz4  15.32s
+gzip 48.66s
+
+file_name: ooffice
+lz4  2.30s
+gzip 12.68s 
+
+file_name: osdb
+lz4  3.34s
+gzip 8.89s 
+
+file_name: reymont
+lz4  5.49s
+gzip 21.53s
+file_name: samba
+lz4  7.28s
+gzip 25.11s 
+file_name: sao
+lz4  3.56s
+gzip 10.33s
+
+file_name: webster
+lz4  18.72s
+gzip 50.08s
+
+file_name: xml
+lz4  1.61s
+gzip 3.95s
+
+file_name: x-ray
+lz4  3.15s
+gzip 6.56s
+</pre>
+<br />
+<br />
+</div>
+
+<div id='silesia-uncomp-ram'>
+<h2>Silesia Decompression in ram.</h2>
+<p>The following files are based upon the <a href="http://sun.aei.polsl.pl/~sdeor/index.php?page=silesia">Calgary corpus</a> and <a href="http://www.data-compression.info/Corpora/CalgaryCorpus/CalgaryCorpus">The Large Calgary Corpus </a>. <br />
+They were done in ram on a tmpfs mounted directory.<br />
+Both were compiled with their default flags and run on my zero over SSH.<br />
+<br />
+This is the decompression times for the files.<br />
+</p>
+<pre>
+file_name: dickens
+lz4  0.31s
+gzip 1.11s
+
+file_name: mozilla
+lz4  1.13s
+gzip 5.02s 
+
+file_name: mr
+lz4  0.26s
+gzip 1.08s
+
+file_name: nci
+lz4  0.55s
+gzip 1.49s
+
+file_name: ooffice
+lz4  0.18s
+gzip 0.78s 
+
+file_name: osdb
+lz4  0.24s
+gzip 1.01s 
+
+file_name: reymont
+lz4  0.18s
+gzip 0.57s 
+
+file_name: samba
+lz4  0.44s
+gzip 1.60s 
+
+file_name: sao
+lz4  0.21s
+gzip 1.09s 
+
+file_name: webster
+lz4  0.97s
+gzip 3.59s 
+
+file_name: xml
+lz4  0.12s
+gzip 0.29s 
+
+file_name: x-ray
+lz4  0.24s
+gzip 1.44s 
+</pre>
+<br />
+<br />
+</div>
+</div>
+</body>
+</html>
