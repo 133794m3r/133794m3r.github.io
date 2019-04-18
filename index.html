@@ -18,9 +18,7 @@ Git Signing: 16A0 650B 6A94 0FD2 71D9  D074 0B17 9CC3 CC9D 4470
 EBF1 8A76 1A41 863D 404F  493C E903 C29E B01C 7D96
 </pre>
     <pre>
-<h2 id='pek' onClick="show_hide('pekb')">
- <b>Personal Email Key</b>
-</h2>
+<h2 id='pek' onClick="show_hide('pekb')">Personal Email Key</h2>
 <div id='pekb'>
             -----BEGIN PGP PUBLIC KEY BLOCK-----
 
@@ -73,8 +71,7 @@ gBPvEZO+e7WesYFtpy1fe28A03iuasvbCsPpz7x511ixmUD/Mn/DSohQZfCp
 =CtYR
 -----END PGP PUBLIC KEY BLOCK-----
 </div>
-<h2 id='gsk' onClick="show_hide('gskb')">
-<b>Git Signing Key</b></h2>
+<h2 id='gsk' onClick="show_hide('gskb')">Git Signing Key</h2>
 <div id='gskb'>
 -----BEGIN PGP PUBLIC KEY BLOCK-----
 
@@ -129,7 +126,7 @@ HUETvqIbwfBlcpRTejBANbj/OaMwULE=
 =05QO
 -----END PGP PUBLIC KEY BLOCK-----
 </div>
-<h2 id='sek' onClick="show_hide('sekb')"><b> School Key</b></h2>
+<h2 id='sek' onClick="show_hide('sekb')">School Key</h2>
 <div id='sekb'>
             -----BEGIN PGP PUBLIC KEY BLOCK-----
 
@@ -174,10 +171,25 @@ YsYfBckUiz4otC2bikHfrQMUFDmaBhV8yLLL9qhik4zWhwliZePdaex8AZC0tl6D
 -----END PGP PUBLIC KEY BLOCK-----
 </div>
     </pre>
-<script type='text/javscript'>
-function show_hide(id){
-
+<script>
+function select_by_id(element_id){
+var element=document.getElementById(element_id);
+return element;
 }
+function show_hide(id){
+    var element=select_by_id(id);
+    var hidden=element.style.display;
+    if(hidden === ""){
+        element.style.display="none";
+    }
+    else{
+        element.style.display='';
+    }
+    return 0;
+}
+show_hide('gskb');
+show_hide('pekb');
+show_hide('sekb');
 </script>
 </body>
 </html>
