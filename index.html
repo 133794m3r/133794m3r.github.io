@@ -9,6 +9,10 @@
  p{
     max-width:95%;
  }
+ body{
+    background-color: #030a0a;
+    color: #FFF;
+}
  </style>
 </head>
 <body>
@@ -27,8 +31,9 @@ You can follow me on pretty much any platform I'm on by my handle @133794m3r
     It was all done with bash escape codes and is seen when the user logins.
 
 </p>
-<a href='my_projects.html'>Go here to get a list of all of my projects with code counts.</a>
-    <span id='img' onClick="show_hide('welcome_img')">Show/Hide the image</span><br />
+<br />
+<a href='my_projects.html'>Go here to get a list of all of my projects with code counts.</a><br />
+    <span id='img' onClick="show_hide('welcome_img')">Fox CTF Welcome Image Show/Hide</span><br />
     <img src='welcome_banner.png' id='welcome_img'></img>
     <span id='show_sec' onClick="show_hide('security_plus')">Show/Hide Security+ Badge</span></br>
     <img src='CompTIA_Security_2Bce.png' id='security_plus'></img>
@@ -198,26 +203,26 @@ YsYfBckUiz4otC2bikHfrQMUFDmaBhV8yLLL9qhik4zWhwliZePdaex8AZC0tl6D
 </div>
     </pre>
 <script>
-function select_by_id(element_id){
-var element=document.getElementById(element_id);
-return element;
-}
-function show_hide(id){
-    var element=select_by_id(id);
-    var hidden=element.style.display;
-    if(hidden === ""){
-        element.style.display="none";
-    }
-    else{
-        element.style.display='';
-    }
-    return 0;
-}
-show_hide('gskb');
-show_hide('pekb');
-show_hide('sekb');
-show_hide('welcome_img');
-show_hide('security_plus');
+	function select_by_id(element_id){
+		var element=document.getElementById(element_id);
+		return element;
+	}
+	function show_hide(id){
+		var element=select_by_id(id);
+		var hidden=element.style.display;
+		if(hidden === ""){
+			element.style.display="none";
+		}
+		else{
+			element.style.display='';
+		}
+		return 0;
+	}
+	show_hide('gskb');
+	show_hide('pekb');
+	show_hide('sekb');
+	show_hide('welcome_img');
+	show_hide('security_plus');
 </script>
 </body>
 </html>
