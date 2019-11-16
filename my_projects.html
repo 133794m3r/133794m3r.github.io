@@ -1,0 +1,289 @@
+<html>
+<head>
+	<title>My various Projects that are here on Github whether private or public</title>
+	<link href="styles.css" rel="stylesheet" type="text/css" />
+</head>
+	<body>
+
+		<div id='toc'>
+			<a href='index.html'>Go back to the main page.</a>
+			<ol>
+				<li>
+					<a href='#c_lib'> C Library</a>
+				</li>
+				<li><a href="#fox_ctf">Fox and Hound CTF</a></li>
+				<li><a href="#js_lib">JavaScript Library</a></li>
+				<li><a href="#open_cf">Open Computer Forensics</a></li>
+				<li><a href="#open_ctf">Open Capture The Flag</a></li>
+				<li><a href="#passgen">Password Generator</a></li>
+				<li><a href="#html_qa">Question and Answers Library</a></li>
+				<li><a href="#rsa_lib">RSA Library</a></li>
+				<li><a href="#rng_php">PHP RNG Library</a></li>
+				<li><a href="#php_func">Misc PHP functions extension</a></li>
+				<li><a href="#sql">SQL code</a></li>
+				<li><a href="#crimson_strife">Browser Based HTML5 Game</a></li>
+				<li><a href="#ctf_scripts">My CTF Solver scripts</a></li>
+				<li><a href="#misc_bash">Misc Bash Scripts</a></li>
+			</ol>
+		</div>
+
+		<div id='main_content'>
+			<p>All code counts exclude external libraries.</p>
+			<div id='c_lib'>
+			c_library <a href='https://github.com/133794m3r/c-library'>Direct link to it</a>
+<pre>
+--------------------------------------------------------------------------------
+Language                      files          blank        comment           code
+--------------------------------------------------------------------------------
+C/C++ Header                      5             70            170            411
+Bourne Shell                      3           2040           1733          10620
+m4                                2            929            104           7928
+Bourne Again Shell                3            111            168           1093
+make                              4            130             43           1012
+C                                14             86            650            613
+XML                               4              0              0            216
+--------------------------------------------------------------------------------
+SUM:                             69            3366          7732          21982
+--------------------------------------------------------------------------------
+</pre>
+		</div>
+
+			<div id='fox_ctf'>
+				Fox and Hound CTF <a href='https://github.com/133794m3r/foxhunt_ctf'>(Private) Repo</a>
+				This repo contains 19 self-building and self-testing labs. Each time it's built all of instruction for each level are changed and updated with the current requirements. Also the scripts let you change all of teh passwords for each level. Each level gives you a password to the next level and each level builds upon the previous ones. It started as a clone of Bandit from overthewire but diverged very quickly into something that has
+				a deterministic build system for all flags. Further the total period for a repeat in flags is 35 builds before any password repeats again. Each password is a sha1 hash of a word and the level id as a salt thus making it
+				harder to bruteforce their answer. Currently it's being implemented at the virginia cyber range. It's currently also at <a href='https://mecc.edu'>Mountain Empire Community College</a>
+<pre>
+Code Counts
+--------------------------------------------------------------------------------
+Language                      files          blank        comment           code
+--------------------------------------------------------------------------------
+Bourne Again Shell               47            340           1370           2982
+C                                12             53            240            819
+Bourne Shell                     24             87            403            607
+HTML                              1             10              0            113
+C/C++ Header                      1              2             31             12
+awk                               1              0              4              1
+--------------------------------------------------------------------------------
+SUM:                             86            492           2048           4534
+--------------------------------------------------------------------------------
+</pre>
+			</div>
+
+			<div id='js_lib'>
+				Javascript Library <a href='https://github.com/133794m3r/js_library'> Repo </a>
+<pre>
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+JavaScript                       9            154            223           1384
+-------------------------------------------------------------------------------
+SUM:                             9            154            223           1384
+-------------------------------------------------------------------------------
+</pre>
+			</div>
+
+			<div id='open_cf'>
+				Open Computer Forensics <a href='https://github.com/133794m3r/openCF_base'>(Private) Repo </a><br />
+				OpenCF is a collection of computer forensics labs that can be freely utilized for learning purposes.
+				There are two labs. They are ranked based on dificulty. Both labs require students to analyze evidence, prove chains of custody, attestation of digital evidence. Evidence gathering, and looking for hidden files embedded in other ones.</br>
+				Case 0: This lab is easier and requires all of the basic utilities. It's called "The Case of the Bitten Skinner."<br />
+				Case 1:" The Case of the Ruffled Feathers" <br />This case also requires the person to have wireshark as there is a file to be recovered from within a pcacp file captured from an ftp session.
+				<br />
+				Both cases require the following skills.
+				<ol>
+					<li> Cracking Password Protected Archives</li>
+					<li> Reading eMail headers to find out network topology</li>
+					<li> Verifying Digital Signatures and know how Public-Key Infrastructure works</li>
+					<li> Getting Attachments from eMails and then analyzing them.
+					<li> Getting hidden information from images and how to properly use steganography.</li>
+					<li> Undelting files from a partition to recover instructions</li>
+					<li> Making a report on their findings to hand off to a DA or similar person</li>
+					<li> Proper report generation and understanding of protocols and procedures</li>
+					<li> Incident remediation to prevent a similar attack from happening again</li>
+					<li> Knowing common hacking tools and their uses</li>
+					<li> Unix/Linux commands, utilities, and file evidence</li>
+					<li> Reading captured packets and extracting data from within it</li>
+				</ol>
+<pre>
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+HTML                             3              8              0            316
+Bourne Shell                     2              8              0             16
+-------------------------------------------------------------------------------
+SUM:                             5             16              0            332
+-------------------------------------------------------------------------------
+</pre>
+			</div>
+
+			<div id='open_ctf'>
+				Open Capture The Flag(My CTF Chal builders) <a href='https://github.com/133794m3r/openCTF'>(Private) Repo</a>
+<pre>
+--------------------------------------------------------------------------------
+Language                      files          blank        comment           code
+--------------------------------------------------------------------------------
+Bourne Again Shell                2             31            158            382
+JavaScript                        4             15            108            190
+Bourne Shell                      6             14             47            166
+C                                 5             15             73            137
+C++                               1             13             89             63
+PHP                               2              8             10             40
+--------------------------------------------------------------------------------
+SUM:                             20             96            485            978
+--------------------------------------------------------------------------------
+</pre>
+			</div>
+
+			<div id='passgen'>
+				Password Generator <a href='https://github.com/133794m3r/hashpass'> Repo</a>
+				</br>
+				Password Generator using uberhash for strong passwords
+<pre>
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+JavaScript                      33           1460           2239          11367
+HTML                            13             65             81            820
+PHP                              5             28            100            589
+Bourne Shell                     3             96             66            352
+CSS                              1              4              8            149
+-------------------------------------------------------------------------------
+SUM:                            55           1653           2494          13277
+-------------------------------------------------------------------------------
+</pre>
+			</div>
+
+			<div id='html_qa'>
+				Question and Answer Library(WIP on hiatus right now) <a href='https://github.com/133794m3r/question_answer_library'>Repo</a>
+				<br />
+				This repo will eventually contain a full platform for question and answering system for students to take quizzes etc. Except I won't be reliant on Quizlet and it'll all be open source and let me put my hand-made questions into it.
+<pre>
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+JavaScript                      13            765            999           4903
+HTML                             6             14             34            360
+CSS                              3             11             47            174
+PHP                              6              5             17             89
+Markdown                         1              6              0             10
+-------------------------------------------------------------------------------
+SUM:                            29            801           1097           5536
+-------------------------------------------------------------------------------
+</pre>
+			</div>
+
+			<div id='rsa_lib'>
+				RSA Library implementing custom attack creators etc.
+<pre>
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+Python                          10            190            165            732
+-------------------------------------------------------------------------------
+SUM:                            10            190            165            732
+-------------------------------------------------------------------------------
+</pre>
+			</div>
+
+			<div id='rng_php'>
+				mwc4096 based RNG for PHP as an extension.
+<pre>
+--------------------------------------------------------------------------------
+Language                      files          blank        comment           code
+--------------------------------------------------------------------------------
+m4                                8           2166           1407          19186
+Bourne Shell                      5           1310           2331          13371
+Bourne Again Shell                2           1345           1995           8371
+make                              1             16              0            155
+C                                 1             26             88            123
+awk                               2             15             22             70
+C/C++ Header                      2             34             68             48
+--------------------------------------------------------------------------------
+SUM:                             21           4912           5911          41324
+--------------------------------------------------------------------------------
+</pre>
+			</div>
+
+			<div id='php_func'>
+				Various PHP functions rewritten into C
+<pre>
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+C                                2             27             95            135
+m4                               1             11             13             39
+C/C++ Header                     1             14             43             26
+PHP                              1              1              0             20
+-------------------------------------------------------------------------------
+SUM:                             5             53            151            220
+-------------------------------------------------------------------------------
+</pre>
+			</div>
+
+			<div id='sql'>
+				My SQL files.
+<pre>
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+SQL                              7           1545           2359           5945
+-------------------------------------------------------------------------------
+SUM:                             7           1545           2359           5945
+-------------------------------------------------------------------------------
+</pre>
+			</div>
+
+			<div id='crimson_strife'>
+				Custom Browser Based game utilizing PHP and HTML5.
+<pre>
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+JavaScript                      63           5280           5662          37495
+PHP                             58            210            619           8383
+HTML                            11             67              9           3526
+CSS                              5             57             56           2963
+C                                1             62             15            320
+JSON                             1              2              0             63
+XML                              3              1              0             44
+Bourne Shell                     1              0              0             17
+-------------------------------------------------------------------------------
+SUM:                           143           5679           6361          52811
+-------------------------------------------------------------------------------
+</pre>
+
+			<div id='ctf_scripts'>
+				CTF Solver scripts.
+<pre>
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+Bourne Shell                     6              5              2            154
+C                                2              4              3             90
+Python                           1              3              4             32
+-------------------------------------------------------------------------------
+SUM:                             9             12              9            276
+-------------------------------------------------------------------------------
+</pre>
+			</div>
+
+			<div id='misc_bash'>
+				My bash scripts that I currently utilize. <a href='https://github.com/133794m3r/misc_bash_scripts'> Repo </a><br />
+<pre>
+--------------------------------------------------------------------------------
+Language                      files          blank        comment           code
+--------------------------------------------------------------------------------
+Bourne Again Shell               30             52            156            659
+Bourne Shell                     29             47             99            486
+Python                            2             79             29            322
+PHP                               3             46             18            274
+--------------------------------------------------------------------------------
+SUM:                             64            224            302           1741
+--------------------------------------------------------------------------------
+</pre>
+			</div>
+
+		</div>
+	</body>
+</html>
