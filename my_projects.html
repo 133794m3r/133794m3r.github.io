@@ -52,7 +52,7 @@ SUM:                             69            3366          7732          21982
 				Fox and Hound CTF <a href='https://github.com/133794m3r/foxhunt_ctf'>(Private) Repo</a>
 				This repo contains 19 self-building and self-testing labs. Each time it's built all of instruction for each level are changed and updated with the current requirements. Also the scripts let you change all of teh passwords for each level. Each level gives you a password to the next level and each level builds upon the previous ones. It started as a clone of Bandit from overthewire but diverged very quickly into something that has
 				a deterministic build system for all flags. Further the total period for a repeat in flags is 35 builds before any password repeats again. Each password is a sha1 hash of a word and the level id as a salt thus making it
-				harder to bruteforce their answer. Currently it's being implemented at the virginia cyber range. It's currently also at <a href='https://mecc.edu'>Mountain Empire Community College</a>
+				harder to bruteforce their answer. Currently it's being implemented at the virginia cyber range. It's currently also at <a href='https://mecc.edu'>Mountain Empire Community College</a><br />
 				<span id='img' onClick="show_hide('welcome_img')">Fox CTF Welcome Image Show/Hide</span><br />
 				<img src='welcome_banner.png' id='welcome_img'></img>
 <pre>
@@ -287,22 +287,9 @@ SUM:                             64            224            302           1741
 			</div>
 
 		</div>
+		<script src='lib.js' type='text/javascript'></script>
 			<script type='text/javascript'>
-			function show_hide(id){
-				var element=select_by_id(id);
-				var hidden=element.style.display;
-				if(hidden === ""){
-					element.style.display="none";
-				}
-				else{
-					element.style.display='';
-				}
-				return 0;
-			}
-			function select_by_id(element_id){
-				var element=document.getElementById(element_id);
-				return element;
-			}
+
 			show_hide('welcome_img');
 			</script>
 	</body>
