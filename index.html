@@ -34,9 +34,9 @@ You can follow me on pretty much any platform I'm on by my handle @133794m3r
 <br />
 <a href='my_projects.html'>Go here to get a list of all of my projects with code counts.</a><br />
     <span id='img' onClick="show_hide('welcome_img')">Fox CTF Welcome Image Show/Hide</span><br />
-    <img src='welcome_banner.png' id='welcome_img'></img>
-    <span id='show_sec' onClick="show_hide('security_plus')">Show/Hide Security+ Badge</span></br>
-    <img src='CompTIA_Security_2Bce.png' id='security_plus'></img>
+    <img style="display:none"  src='welcome_banner.png' id='welcome_img'></img>
+    <span id='show_sec' class='hidden' onClick="show_hide('security_plus')">Show/Hide Security+ Badge</span></br>
+    <img style="display:none" src='CompTIA_Security_2Bce.png' id='security_plus'></img>
 <pre>
 GPG Keys IDs
 Email: 6C158967, GIT Signing: CC9D4470, School: B01C7D96
@@ -47,7 +47,7 @@ School: EBF1 8A76 1A41 863D 404F  493C E903 C29E B01C 7D96
 </pre>
     <pre>
 <h2 id='pek' onClick="show_hide('pekb')">Personal Email Key ID</h2>
-<div id='pekb'>Key ID:6C158967
+<div id='pekb' style="display:none" >Key ID:6C158967
 
 -----BEGIN PGP PUBLIC KEY BLOCK-----
 
@@ -101,7 +101,7 @@ gBPvEZO+e7WesYFtpy1fe28A03iuasvbCsPpz7x511ixmUD/Mn/DSohQZfCp
 -----END PGP PUBLIC KEY BLOCK-----
 </div>
 <h2 id='gsk' onClick="show_hide('gskb')">Git Signing Key</h2>
-<div id='gskb'>Key ID:CC9D4470
+<div id='gskb' style="display:none" >Key ID:CC9D4470
 
 -----BEGIN PGP PUBLIC KEY BLOCK-----
 
@@ -157,7 +157,7 @@ HUETvqIbwfBlcpRTejBANbj/OaMwULE=
 -----END PGP PUBLIC KEY BLOCK-----
 </div>
 <h2 id='sek' onClick="show_hide('sekb')">School Key</h2>
-<div id='sekb'>Key ID:B01C7D96
+<div id='sekb' style="display:none" >Key ID:B01C7D96
 
 -----BEGIN PGP PUBLIC KEY BLOCK-----
 
@@ -204,11 +204,13 @@ YsYfBckUiz4otC2bikHfrQMUFDmaBhV8yLLL9qhik4zWhwliZePdaex8AZC0tl6D
     </pre>
 <script src='lib.js' type='text/javascript'></script>    
 <script>
+	/*
 	show_hide('gskb');
 	show_hide('pekb');
 	show_hide('sekb');
 	show_hide('welcome_img');
 	show_hide('security_plus');
+	*/
 </script>
 </body>
 </html>
