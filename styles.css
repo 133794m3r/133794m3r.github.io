@@ -17,3 +17,6 @@ padding:3px;
     top: 4px;
     width: 80%;
 } 
+.hidden{
+    display:none
+}
