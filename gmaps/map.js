@@ -4,12 +4,12 @@ var locations = [];
 function initialiseMap() {
 
 
-  $.getJSON("https://sheets.googleapis.com/v4/spreadsheets/1kn8vIEY1vZXtMSWz40bnvopderkFqYuvWx1lDg5uhvM/values/Form Responses!A2:Q?key=AIzaSyCL3svfDy38ptuASERn56uSMyqDIH5MKvI", function(data) {
+  $.getJSON("https://sheets.googleapis.com/v4/spreadsheets/1kn8vIEY1vZXtMSWz40bnvopderkFqYuvWx1lDg5uhvM/values/Form Responses!A2:Q?key=AIzaSyDfUZGrOEecuIO-isPQyb6tL6CK3pfccX4", function(data) {
     	// data.values contains the array of rows from the spreadsheet. Each row is also an array of cell values.
     	// Modify the code below to suit the structure of your spreadsheet.
     	$(data.values).each(function() {
     		var location = {};
-    			location.msg = this [1];
+    			location.url = this [1];
 				location.title = this[2];
 				location.latitude = parseFloat(this[8]);
       	        location.longitude = parseFloat(this[9]);
@@ -31,7 +31,7 @@ function setLocations(map, locations) {
   var bounds = new google.maps.LatLngBounds();
   // Create nice, customised pop-up boxes, to appear when the marker is clicked on
   var infowindow = new google.maps.InfoWindow({
-    content: "Content String"
+    content: "This is a window"
   });
   for (var i = 0; i < locations.length; i++) {
     var new_marker = createMarker(map, locations[i], infowindow);
