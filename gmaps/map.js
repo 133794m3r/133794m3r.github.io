@@ -15,7 +15,8 @@ function initialiseMap() {
       	        location.longitude = parseFloat(this[9]);
 	  		    locations.push(location);
     	});
-
+	//done parsing.
+	console.log('done parsing');
       // Center on (0, 0). Map center and zoom will reconfigure later (fitbounds method)
       var mapOptions = {
         zoom: 10,
