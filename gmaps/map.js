@@ -1,6 +1,11 @@
 var map;
 var stories = [];
 var info_windows=[]
+var oms = new OverlappingMarkerSpiderfier(map, {
+  markersWontMove: true,
+  markersWontHide: true,
+  basicFormatEvents: true
+});
 function draw_map() {
 	let key='AIzaSyDfUZGrOEecuIO-isPQyb6tL6CK3pfccX4';
 	let ajax=new XMLHttpRequest();
@@ -73,10 +78,12 @@ function create_marker(map, story, infowindow) {
 	map: map,
 	title: story.title,
   });
-  google.maps.event.addListener(marker, 'click', function() {
+
+  google.maps.event.addListener(marker, 'spider_click', function() {
 	infowindow.setContent('<div><p><h3>' + story.title + '</h3></p>'+'<p>'+story.msg+'</p>'+story.full_address+'</p></div>');
 	infowindow.open(map, marker);
   });
+  oms.addMarker(marker)
   return marker;
 }
 
