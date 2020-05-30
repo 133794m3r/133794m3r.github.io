@@ -9,6 +9,7 @@ function initialiseMap() {
     	// Modify the code below to suit the structure of your spreadsheet.
     	$(data.values).each(function() {
     		var location = {};
+    			location.msg = this [1];
 				location.title = this[2];
 				location.latitude = parseFloat(this[8]);
       	        location.longitude = parseFloat(this[9]);
