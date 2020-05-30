@@ -1,13 +1,15 @@
 var map;
 var stories = [];
 var info_windows=[]
-var oms = new OverlappingMarkerSpiderfier(map, {
+var oms;
+function draw_map() {
+
+  oms=new OverlappingMarkerSpiderfier(map, {
   markersWontMove: true,
   markersWontHide: true,
   basicFormatEvents: true
 });
-function draw_map() {
-	let key='AIzaSyDfUZGrOEecuIO-isPQyb6tL6CK3pfccX4';
+let key='AIzaSyDP5oYBNSJ5lFjKJjtFQaBfYe_lD12ZA68';
 	let ajax=new XMLHttpRequest();
 	ajax.open('GET',"https://sheets.googleapis.com/v4/spreadsheets/1kn8vIEY1vZXtMSWz40bnvopderkFqYuvWx1lDg5uhvM/values/Form%20Responses!A2:Q?key="+key);ajax.setRequestHeader("Content-Type", "application/json");
 	console.log('requested');
