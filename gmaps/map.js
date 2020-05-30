@@ -21,6 +21,7 @@ function initialiseMap() {
         zoom: 10,
         center: new google.maps.LatLng(0, 0)
       };
+      console.log('done')
       var map = new google.maps.Map(document.getElementById('map'), mapOptions);
       setLocations(map, locations);
   });
