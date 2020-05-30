@@ -3,13 +3,14 @@ var stories = [];
 var info_windows=[]
 var oms;
 function draw_map() {
-
+/*
   oms=new OverlappingMarkerSpiderfier(map, {
   markersWontMove: true,
   markersWontHide: true,
   basicFormatEvents: true
 });
-let key='AIzaSyDP5oYBNSJ5lFjKJjtFQaBfYe_lD12ZA68';
+*/
+	let key='AIzaSyDfUZGrOEecuIO-isPQyb6tL6CK3pfccX4';
 	let ajax=new XMLHttpRequest();
 	ajax.open('GET',"https://sheets.googleapis.com/v4/spreadsheets/1kn8vIEY1vZXtMSWz40bnvopderkFqYuvWx1lDg5uhvM/values/Form%20Responses!A2:Q?key="+key);ajax.setRequestHeader("Content-Type", "application/json");
 	console.log('requested');
@@ -81,11 +82,11 @@ function create_marker(map, story, infowindow) {
 	title: story.title,
   });
 
-  google.maps.event.addListener(marker, 'spider_click', function() {
+  google.maps.event.addListener(marker, 'click', function() {
 	infowindow.setContent('<div><p><h3>' + story.title + '</h3></p>'+'<p>'+story.msg+'</p>'+story.full_address+'</p></div>');
 	infowindow.open(map, marker);
   });
-  oms.addMarker(marker)
+  //oms.addMarker(marker)
   return marker;
 }
 
