@@ -3,13 +3,6 @@ var stories = [];
 var info_windows=[]
 var oms;
 function draw_map() {
-/*
-  oms=new OverlappingMarkerSpiderfier(map, {
-  markersWontMove: true,
-  markersWontHide: true,
-  basicFormatEvents: true
-});
-*/
 	let key='AIzaSyDfUZGrOEecuIO-isPQyb6tL6CK3pfccX4';
 	let ajax=new XMLHttpRequest();
 	ajax.open('GET',"https://sheets.googleapis.com/v4/spreadsheets/1kn8vIEY1vZXtMSWz40bnvopderkFqYuvWx1lDg5uhvM/values/Form%20Responses!A2:Q?key="+key);ajax.setRequestHeader("Content-Type", "application/json");
@@ -38,6 +31,7 @@ function draw_map() {
 		data.values.forEach(function(value) {
 			var story = {};
 				story.title=value[2];
+				story.age=value[3];
 				story.msg=value[1];
 				story.full_address=value[7];
 				story.latitude = parseFloat(value[8]);
@@ -83,10 +77,9 @@ function create_marker(map, story, infowindow) {
   });
 
   google.maps.event.addListener(marker, 'click', function() {
-	infowindow.setContent('<div><p><h3>' + story.title + '</h3></p>'+'<p>'+story.msg+'</p>'+story.full_address+'</p></div>');
+	infowindow.setContent('<div><p><h3>' + story.title + ','+story.age+ '</h3></p>'+'<p>'+story.msg+'</p>'+story.full_address+'</p></div>');
 	infowindow.open(map, marker);
   });
-  //oms.addMarker(marker)
   return marker;
 }
 
