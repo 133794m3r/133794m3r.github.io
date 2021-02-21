@@ -1,12 +1,43 @@
 <html>
 <head>
 	<title>My various Projects that are here on Github whether private or public</title>
-	<link href="styles.css" rel="stylesheet" type="text/css" />
+	<link href="css/styles.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="css/bs-darkly.min.css" />
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js" async defer></script>
 </head>
 	<body>
-
+	<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+		<span class="navbar-brand">Macarthur's Links</span>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbar_nav" aria-controls="navbar_nav"
+				aria-expanded="false" aria-label="Toggle">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbar_nav">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item">
+					<a class="nav-link" href="index.html">Return to homepage</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="https://github.com/133794m3r">Github Profile</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="https://linkedin.com/in/macarthur-inbody">LinkedIn Profile</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="Macarthur_Inbody-resume.pdf">Resume</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Projects</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Certifications</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
 		<div id='toc'>
-			<a href='index.html'>Go back to the main page.</a>
 			<ol>
 				<li><a href="#rookiehacks2020">We Are Not Forgotten RookieHacks 2020</a>
 				<li>
@@ -97,7 +128,7 @@ SUM:                             69           3,366         7,732         21,982
 				a deterministic build system for all flags. Further the total period for a repeat in flags is 35 builds before any password repeats again. Each password is a sha1 hash of a word and the level id as a salt thus making it
 				harder to bruteforce their answer. Currently it's being implemented at the virginia cyber range. It's currently also at <a href='https://mecc.edu'>Mountain Empire Community College</a><br />
 				<span id='img' onClick="show_hide('welcome_img')">Fox CTF Welcome Image Show/Hide</span><br />
-				<img src='welcome_banner.png' id='welcome_img'></img>
+				<img src='welcome_banner.png' alt="Welcome Message for the challenge" id='welcome_img' />
 <pre>
 Code Counts
 --------------------------------------------------------------------------------
@@ -132,7 +163,7 @@ SUM:                             9            154            223          1,384
 			<div id='open_cf'>
 				Open Computer Forensics <a href='https://github.com/133794m3r/openCF_base'>(Private) Repo </a><br />
 				OpenCF is a collection of computer forensics labs that can be freely utilized for learning purposes.
-				There are two labs. They are ranked based on dificulty. Both labs require students to analyze evidence, prove chains of custody, attestation of digital evidence. Evidence gathering, and looking for hidden files embedded in other ones.</br>
+				There are two labs. They are ranked based on dificulty. Both labs require students to analyze evidence, prove chains of custody, attestation of digital evidence. Evidence gathering, and looking for hidden files embedded in other ones.<br />
 				Case 0: This lab is easier and requires all of the basic utilities. It's called "The Case of the Bitten Skinner."<br />
 				Case 1:" The Case of the Ruffled Feathers" <br />This case also requires the person to have wireshark as there is a file to be recovered from within a pcacp file captured from an ftp session.
 				<br />
@@ -485,6 +516,7 @@ SUM:                            37            462            424           2444
 		</pre>
 		</div>
 		
+		</div>
 		</div>
 		<script src='lib.js' type='text/javascript'></script>
 			<script type='text/javascript'>
